@@ -1,0 +1,103 @@
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ * 
+ * @file 单行、文本框样式
+ * @author erik, zhaolei
+ */
+@import "mixin.less";
+@import "variable.less";
+
+.ui-textbox {
+    position: relative;
+    display: inline-block;
+    *display: inline;
+
+    input, textarea {
+        color: #333;
+        padding: 2px 4px;
+        font-size: 13px;
+        background: #FFF;
+        border: 1px solid #a8adb6;
+        .input-outter-size(25px, 200px, 4px, 8px, 2px, 2px);
+        background-image: -webkit-gradient(linear, 0 0, 0 2, from(#ececec), to(#fff));
+        background-image: -moz-linear-gradient(top, #ececec, #fff 2px, #fff);
+        &:focus {
+            outline: 0;
+        }
+        &:hover {
+            border: 1px solid #6e8ab8;
+        }
+    }
+    textarea {
+        height: 200px;
+        overflow: auto;
+        resize: none;
+    }
+
+    .ui-textbox-hint {
+        .inline-block ();
+        .box-sizing (border-box);
+        background-color: #f2f2f2;
+        padding: 0 12px;
+        border: 1px solid #a8adb6;
+        vertical-align: top;
+    }
+
+    .ui-textbox-placeholder {
+        color: #999;
+        position: absolute;
+        left: 3px;
+        top: 6px;
+    }
+
+    .ui-textbox-placeholder-hidden {
+        display: none;
+    }
+}
+
+.ui-textbox-hint-suffix {
+    .ui-textbox-hint {
+        border-left: 0;
+    }
+}
+.ui-textbox-hint-prefix {
+    .ui-textbox-hint {
+        border-right: 0;
+    }
+}
+
+.ui-textbox-disabled,
+.ui-textbox-read-only {
+    input, textarea {
+        border: 1px solid #7E9DB9;
+        background: #f6f6f6;
+        color: #999;
+    }
+}
+
+
+/** 验证 */
+.ui-textbox-validity-label {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    color: #CC0000;
+    padding-left: 10px;
+}
+
+.ui-textbox-validity-label-notice {
+    color: #FF0000;
+}
+
+.ui-textbox-validity-label-warn {
+    color: red;
+}
+
+.ui-textbox-validity-label-invalid {
+    color: #CC0000;
+}
+
+.ui-textbox-validity-invalid input {
+    border: 1px solid red;
+}
