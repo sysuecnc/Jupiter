@@ -1,0 +1,92 @@
+/**
+  * ESUI (Enterprise Simple UI)
+  * Copyright 2013 Baidu Inc. All rights reserved.
+  * 
+  * @file 树样式
+  * @author dbear
+  */
+.ui-tree ul,
+.ui-tree li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.ui-tree .ui-tree-node {
+  cursor: pointer;
+  overflow: hidden;
+  line-height: 22px;
+}
+.ui-tree .ui-tree-node.ui-tree-node-empty {
+  cursor: default;
+}
+.ui-tree .ui-tree-node .ui-tree-content-wrapper {
+  border-left: 4px solid #fff;
+  padding-left: 15px;
+}
+.ui-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator {
+  text-indent: -500%;
+  *text-indent: 0;
+  *font-size: 0;
+  *line-height: 0;
+  vertical-align: middle;
+  margin-right: 3px;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  width: 14px;
+  height: 14px;
+  overflow: hidden;
+  background-image: url("../img/esui-open-icon.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-color: transparent;
+}
+.ui-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator.ui-tree-node-indicator-expanded {
+  background-image: url("../img/esui-close-icon.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-color: transparent;
+}
+.ui-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator.ui-tree-node-indicator-empty,
+.ui-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator.ui-tree-node-indicator-previous,
+.ui-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator.ui-tree-node-indicator-far-previous {
+  background-image: none;
+}
+.ui-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-item-content {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+.ui-tree .ui-tree-node .ui-tree-content-wrapper.ui-tree-content-wrapper-selected {
+  background: #c9c9c9;
+  border-left: 4px solid #4765ca;
+}
+.ui-tree .ui-tree-node .ui-tree-sub-root-expanded {
+  display: block;
+}
+.ui-tree .ui-tree-node .ui-tree-sub-root-collapsed {
+  display: none;
+}
+.ui-tree.ui-tree-hide-root .ui-tree-root .ui-tree-content-wrapper {
+  display: none;
+}
+.ui-tree.ui-tree-hide-root .ui-tree-root .ui-tree-content-wrapper .ui-tree-node-indicator-level-0 {
+  width: 0;
+}
+.ui-tree.ui-tree-hide-root .ui-tree-root .ui-tree-sub-root .ui-tree-content-wrapper {
+  display: block;
+}
+.ui-tree.skin-folder-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator {
+  background-image: url("../img/esui-folder.png");
+  background-repeat: no-repeat;
+  background-position: 0 -6px;
+  background-color: transparent;
+}
+.ui-tree.skin-folder-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator.ui-tree-node-indicator-expanded {
+  background-position: 0 -30px;
+}
+.ui-tree.skin-folder-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator.ui-tree-node-indicator-empty,
+.ui-tree.skin-folder-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator.ui-tree-node-indicator-previous,
+.ui-tree.skin-folder-tree .ui-tree-node .ui-tree-content-wrapper .ui-tree-node-indicator.ui-tree-node-indicator-far-previous {
+  background-image: none;
+}

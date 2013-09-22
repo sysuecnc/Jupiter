@@ -1,10 +1,10 @@
 .ui-tree .ui-tree-node {
-    overflow: initial;
-    line-height: 15px;
+  overflow: initial;
+  line-height: 15px;
 }
 .ui-tree-content-wrapper {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 .ui-tree .ui-tree-node .ui-tree-content-wrapper {
-    padding-left: 3px;
+  padding-left: 3px;
 }

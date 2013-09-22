@@ -12,12 +12,75 @@ define(function(require) {
     var MonitorModel = function() {
         Model.apply(this, arguments);
         var ajaxConf = require('common/config').ajax;
-        var remote = require('er/datasource').remote;
+        var util = require('common/util');
+        this.set('sidebarName', '设备');
         this.datasource = [
-            {"switchlist": remote(ajaxConf.options['getSwitchList'].url,
-                ajaxConf.options.getSwitchList)},
-            {"buildinglist": remote(ajaxConf.options['getBuildingList'].url,
-                ajaxConf.options.getBuildingList)},
+            {
+                "switch_grouped_list": function() {
+                    /* return function() { */
+                        var rsp = {};
+                        function cbk(response) {
+                            rsp = response;
+                        }
+                        var option = util.optionMix(
+                            ajaxConf.options['getGroupedSwitchList'],
+                            {
+                                success: function(response) {
+                                    /* console.log(response); */
+                                    cbk(response);
+                                },
+                                async: false,
+                            }
+                        );
+                        baidu.ajax(option);
+                        return rsp;
+                    /* }; */
+                },
+            },
+            {
+                "switch_list": function() {
+                    /* return function() { */
+                        var rsp = {};
+                        function cbk(response) {
+                            rsp = response;
+                        }
+                        var option = util.optionMix(
+                            ajaxConf.options['getSwitchList'],
+                            {
+                                success: function(response) {
+                                    /* console.log(response); */
+                                    cbk(response);
+                                },
+                                async: false,
+                            }
+                        );
+                        baidu.ajax(option);
+                        return rsp;
+                    /* }; */
+                },
+            },
+            {
+                "building_list": function() {
+                    /* return function() { */
+                        var rsp = {};
+                        function cbk(response) {
+                            rsp = response;
+                        }
+                        var option = util.optionMix(
+                            ajaxConf.options['getBuildingList'],
+                            {
+                                success: function(response) {
+                                    /* console.log(response); */
+                                    cbk(response);
+                                },
+                                async: false,
+                            }
+                        );
+                        baidu.ajax(option);
+                        return rsp;
+                    /* }; */
+                },
+            },
         ];
     };
     require('er/util').inherits(MonitorModel, Model);

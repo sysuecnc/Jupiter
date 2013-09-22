@@ -1,0 +1,9 @@
+.ui-tab {
+  width: 100%;
+}
+.ui-tab-horizontal > .ui-tab-navigator {
+  float: right;
+}
+.ui-tab-vertical > .ui-tab-navigator {
+  float: left;
+}

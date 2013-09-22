@@ -19,25 +19,42 @@ define(function(require) {
         },
     };
     config.ajax.options = {
-        getSwitchList: {
+        getGroupedSwitchList: {
             url: baseURL + "/monitor/query",
-            method: 'POST',
+            type: 'POST',
             data: {
                 request: JSON.stringify({
                     operation: config.ajax.operation.QUERY,
                     target: config.ajax.target.SWITCH,
-                    params: {},
+                    params: {
+                        command: 'getGroupedList',
+                    },
+                }),
+            },
+        },
+        getSwitchList: {
+            url: baseURL + "/monitor/query",
+            type: 'POST',
+            data: {
+                request: JSON.stringify({
+                    operation: config.ajax.operation.QUERY,
+                    target: config.ajax.target.SWITCH,
+                    params: {
+                        command: 'getList',
+                    },
                 }),
             },
         },
         getBuildingList: {
             url: baseURL + "/monitor/query",
-            method: 'POST',
+            type: 'POST',
             data: {
                 request: JSON.stringify({
                     operation: config.ajax.operation.QUERY,
                     target: config.ajax.target.BUILDING,
-                    params: {},
+                    params: {
+                        command: 'getList',
+                    },
                 }),
             },
         },
