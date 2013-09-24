@@ -59,6 +59,7 @@ define(function(require) {
             },
         },
     };
+    cofig.erajax = {}
     config.erajax.options = {
         getGroupedSwitchList: config.ajax.options.getGroupedSwitchList,
         getSwitchList: config.ajax.options.getSwitchList,
