@@ -5,15 +5,15 @@
 
 define(function(require) {
     gtest = gtest || {}
-    gtest.monitor = gtest.monitor || {}
+    gtest.debug = gtest.debug || {}
     var Action = require('er/Action');
 
     /**
      * Action defination, derived from er.Action
      */ 
     var MonitorAction = function() {
-        gtest.monitor.action = this;
         Action.apply(this, arguments);
+        gtest.debug.maction = this;
     };
 
     /**
