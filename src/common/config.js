@@ -59,6 +59,15 @@ define(function(require) {
             },
         },
     };
+    config.erajax.options = {
+        getGroupedSwitchList: config.ajax.options.getGroupedSwitchList,
+        getSwitchList: config.ajax.options.getSwitchList,
+        getBuildingList: config.ajax.options.getBuildingList,
+    };
+    var opts = config.erajax.options;
+    opts.getGroupedSwitchList.data = JSON.stringify(opts.getGroupedSwitchList.data);
+    opts.getSwitchList.data = JSON.stringify(opts.getSwitchList.data);
+    opts.getBuildingList.data = JSON.stringify(opts.getBuildingList.data);
 
     return config;
 });

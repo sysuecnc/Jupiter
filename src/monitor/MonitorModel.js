@@ -12,6 +12,8 @@ define(function(require) {
     var MonitorModel = function() {
         Model.apply(this, arguments);
         var ajaxConf = require('common/config').ajax;
+        var remote = require('er/datasource').remote;
+        var erajaxopt = require('common/config').erajax.options;
         var util = require('common/util');
         this.set('sidebarName', '设备');
         this.datasource = [
@@ -80,6 +82,18 @@ define(function(require) {
                         return rsp;
                     /* }; */
                 },
+            },
+            {
+                "sgl": remote(erajaxopt.getGroupedSwitchList.url,
+                        erajaxopt.getGroupedSwitchList),
+            },
+            {
+                "sl": remote(erajaxopt.getSwitchList.url,
+                        erajaxopt.getSwitchList),
+            },
+            {
+                "bl": remote(erajaxopt.getBuildingList.url,
+                        erajaxopt.getBuildingList),
             },
         ];
     };
