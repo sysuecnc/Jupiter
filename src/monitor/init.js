@@ -9,6 +9,6 @@ define(function(require) {
     var controller = require('er/controller');
     controller.registerAction(actions[0]);
     return {
-        action: require('monitor/MonitorAction');
+        action: require('monitor/MonitorAction'),
     };
 });
