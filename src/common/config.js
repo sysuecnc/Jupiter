@@ -61,14 +61,45 @@ define(function(require) {
     };
     config.erajax = {}
     config.erajax.options = {
-        getGroupedSwitchList: config.ajax.options.getGroupedSwitchList,
-        getSwitchList: config.ajax.options.getSwitchList,
-        getBuildingList: config.ajax.options.getBuildingList,
+        getGroupedSwitchList: {
+            url: baseURL + "/monitor/query",
+            type: 'POST',
+            data: JSON.stringify({
+                request: JSON.stringify({
+                    operation: config.ajax.operation.QUERY,
+                    target: config.ajax.target.SWITCH,
+                    params: {
+                        command: 'getGroupedList',
+                    },
+                }),
+            }),
+        },
+        getSwitchList: {
+            url: baseURL + "/monitor/query",
+            type: 'POST',
+            data: JSON.stringify({
+                request: JSON.stringify({
+                    operation: config.ajax.operation.QUERY,
+                    target: config.ajax.target.SWITCH,
+                    params: {
+                        command: 'getList',
+                    },
+                }),
+            }),
+        },
+        getBuildingList: {
+            url: baseURL + "/monitor/query",
+            type: 'POST',
+            data: JSON.stringify({
+                request: JSON.stringify({
+                    operation: config.ajax.operation.QUERY,
+                    target: config.ajax.target.BUILDING,
+                    params: {
+                        command: 'getList',
+                    },
+                }),
+            }),
+        },
     };
-    var opts = config.erajax.options;
-    opts.getGroupedSwitchList.data = JSON.stringify(opts.getGroupedSwitchList.data);
-    opts.getSwitchList.data = JSON.stringify(opts.getSwitchList.data);
-    opts.getBuildingList.data = JSON.stringify(opts.getBuildingList.data);
-
     return config;
 });
