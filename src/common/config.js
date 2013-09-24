@@ -64,7 +64,7 @@ define(function(require) {
         getGroupedSwitchList: {
             url: baseURL + "/monitor/query",
             type: 'POST',
-            data: JSON.stringify({
+            data: {
                 request: JSON.stringify({
                     operation: config.ajax.operation.QUERY,
                     target: config.ajax.target.SWITCH,
@@ -72,12 +72,12 @@ define(function(require) {
                         command: 'getGroupedList',
                     },
                 }),
-            }),
+            },
         },
         getSwitchList: {
             url: baseURL + "/monitor/query",
             type: 'POST',
-            data: JSON.stringify({
+            data: {
                 request: JSON.stringify({
                     operation: config.ajax.operation.QUERY,
                     target: config.ajax.target.SWITCH,
@@ -85,12 +85,12 @@ define(function(require) {
                         command: 'getList',
                     },
                 }),
-            }),
+            },
         },
         getBuildingList: {
             url: baseURL + "/monitor/query",
             type: 'POST',
-            data: JSON.stringify({
+            data: {
                 request: JSON.stringify({
                     operation: config.ajax.operation.QUERY,
                     target: config.ajax.target.BUILDING,
@@ -98,7 +98,7 @@ define(function(require) {
                         command: 'getList',
                     },
                 }),
-            }),
+            },
         },
     };
     return config;
