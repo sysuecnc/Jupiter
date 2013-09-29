@@ -294,6 +294,7 @@ define(
                             args
                         );
                         events.fire('actionfail', error);
+                        events.notifyError(error);
 
                         loading.reject(reason);
                         return;
@@ -327,6 +328,7 @@ define(
                                 args
                             );
                             events.fire('actionfail', error);
+                            events.notifyError(error);
 
                             loading.reject(reason);
                             return;
@@ -400,17 +402,37 @@ define(
                         util.mix({ action: action }, context)
                     );
                 },
-                function () {
-                    events.fire(
-                        'enteractionfail',
-                        util.mix(
-                            {
-                                failType: 'EnterFail',
-                                reason: 'Invoke action.enter() causes error'
-                            },
-                            context
-                        )
+                function (reason) {
+                    var message = '';
+                    if (!reason) {
+                        message = 'Invoke action.enter() causes error';
+                    }
+                    // 普通异常
+                    else if (reason.message) {
+                        message = reason.message;
+                        if (reason.stack) {
+                            message += '\n' + reason.stack;
+                        }
+                    }
+                    // 能够序列化
+                    else if (window.JSON 
+                        && typeof JSON.stringify === 'function'
+                    ) {
+                        message = JSON.stringify(reason);
+                    }
+                    else {
+                        message = reason;
+                    }
+
+                    var error = util.mix(
+                        {
+                            failType: 'EnterFail',
+                            reason: message
+                        },
+                        context
                     );
+                    events.fire('enteractionfail', error);
+                    events.notifyError(error);
                 }
             );
 
@@ -455,15 +477,21 @@ define(
 
         var globalActionLoader;
         function renderAction(url) {
-            if (globalActionLoader) {
+            if (typeof url === 'string') {
+                url = URL.parse(url);
+            }
+            if (globalActionLoader 
+                && typeof globalActionLoader.abort === 'function'
+            ) {
                 globalActionLoader.abort();
             }
             globalActionLoader = forward(url, config.mainElement, null, false);
-            globalActionLoader.then(
-                enterAction, 
-                util.bind(events.notifyError, events)
-            );
+            globalActionLoader
+                .then(enterAction)
+                .fail(util.bind(events.notifyError, events));
         }
+
+        controller.renderAction = renderAction;
 
         function removeChildAction(container, targetContext) {
             var info = childActionMapping[container.id];
@@ -558,6 +586,7 @@ define(
             // 接口与`locator.redirect`保持一致，
             // 但由于`renderChildAction`可以传额外参数，因此也再加一个参数
             function redirect(url, options, extra) {
+                options = options || {};
                 var url = require('./locator').resolveURL(url, options);
 
                 var actionContext = childActionMapping[context.container];
